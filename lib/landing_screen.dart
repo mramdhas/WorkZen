@@ -18,7 +18,7 @@ class LandingScreen extends StatelessWidget {
             Positioned(
               left: 60,
               right: 60,
-              bottom: 10.0,
+              bottom: 0.0,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,

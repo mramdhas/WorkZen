@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:workzen/themes/theme.dart';
+import 'package:workzen/break_dashboard.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class LandingSchedule extends StatelessWidget {
-  const LandingSchedule({Key? key});
+  //const LandingSchedule({Key? key});
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+  void requestPermissions() {
+    flutterLocalNotificationsPlugin
+    .resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +54,7 @@ class LandingSchedule extends StatelessWidget {
                           backgroundColor: AppTheme.primaryColor,
                           fixedSize: Size(330, 50),
                           elevation: 0,
-                          side: BorderSide(color: AppTheme.timeBorderColor, width: 4.0),
+                          side: BorderSide(color: AppTheme.timeBorderColor, width: 3.0),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25.0)
                           )
@@ -56,7 +69,7 @@ class LandingSchedule extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         elevation: 0,
-                        side: BorderSide(color: AppTheme.timeBorderColor, width: 4.0),
+                        side: BorderSide(color: AppTheme.timeBorderColor, width: 3.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25.0)
                         ),
@@ -74,7 +87,7 @@ class LandingSchedule extends StatelessWidget {
                           backgroundColor: AppTheme.primaryColor,
                           fixedSize: Size(330, 50),
                           elevation: 0,
-                          side: BorderSide(color: AppTheme.timeBorderColor, width: 4.0),
+                          side: BorderSide(color: AppTheme.timeBorderColor, width: 3.0),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25.0)
                           )
@@ -84,11 +97,12 @@ class LandingSchedule extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    print('Continue');
+                    requestPermissions();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BreakDashboard()));
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black87,
-                      fixedSize: Size(220, 50),
+                      fixedSize: Size(250, 50),
                       elevation: 0,
                       side: BorderSide(color: AppTheme.primaryColor, width: 2.0),
                       shape: RoundedRectangleBorder(
